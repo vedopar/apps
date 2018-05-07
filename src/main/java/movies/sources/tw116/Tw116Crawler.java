@@ -9,7 +9,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Tw116Crawler <MovieInfo> implements Crawler {
     private final String USER_AGENT = "Mozilla/5.0";
@@ -49,5 +53,17 @@ public class Tw116Crawler <MovieInfo> implements Crawler {
         in.close();
 
         return response.toString();
+    }
+
+    public ArrayList<String> getMovieHrefs(String response) {
+        HashMap<String, String> hrefs = new HashMap<String, String>();
+        ArrayList<String> result = new ArrayList<String>();
+        String pattern = "<dl><dt><a href=\\\"(.*?)\\\" target=\\\"_blank\\\">";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(response);
+        while (m.find()) {
+            result.add(m.group(1));
+        }
+        return result;
     }
 }

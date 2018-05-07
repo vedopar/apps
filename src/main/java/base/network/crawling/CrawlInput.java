@@ -7,5 +7,4 @@ import java.util.List;
 public interface CrawlInput {
     URL getUrl() throws MalformedURLException;
     String getKeyword();
-    List<String> getPatterns();
 }

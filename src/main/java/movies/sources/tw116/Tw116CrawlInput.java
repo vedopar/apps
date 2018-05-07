@@ -25,8 +25,4 @@ public class Tw116CrawlInput implements CrawlInput {
     public String getKeyword() {
         return keyword;
     }
-
-    public List<String> getPatterns() {
-        return null;
-    }
 }
